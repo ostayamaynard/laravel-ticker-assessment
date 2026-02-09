@@ -21,6 +21,20 @@ class FetchTickerData extends Command
             $response = Http::withOptions([
                 'verify' => false,
             ])->timeout(30)->get('https://api.exchange.coinbase.com/products/BTC-USDT/ticker');
+
+            // Binance API - Works in Philippines, not blocked
+            // Using Binance instead of Coinbase due to regional ISP restrictions
+            // $response = Http::timeout(30)->get('https://api.binance.com/api/v3/ticker/bookTicker', [
+            //     'symbol' => 'BTCUSDT'
+            // ]);
+
+            // CoinGecko API - Free and works in Philippines
+            // $response = Http::timeout(30)->get('https://api.coingecko.com/api/v3/simple/price', [
+            //     'ids' => 'bitcoin',
+            //     'vs_currencies' => 'usd',
+            //     'include_24hr_vol' => 'true',
+            //     'include_last_updated_at' => 'true'
+            // ]);
             
             // Debug: Show response status
             $this->line('Response Status: ' . $response->status());
