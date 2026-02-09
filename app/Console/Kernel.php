@@ -9,10 +9,12 @@ class Kernel extends ConsoleKernel
 {
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command('ticker:fetch')
-                 ->everyFifteenMinutes()
-                 ->withoutOverlapping()
-                 ->runInBackground();
+    // Demo branch uses the demo command
+    // Main branch uses: ticker:fetch
+    $schedule->command('ticker:fetch-demo')
+             ->everyFifteenMinutes()
+             ->withoutOverlapping()
+             ->runInBackground();
     }
 
     protected function commands(): void
